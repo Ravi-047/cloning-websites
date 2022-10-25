@@ -17,11 +17,10 @@ const VideoDetail = () => {
       .then((data) => setVideoDetail(data.items[0]))
       .catch((err) => console.log(err));
 
-    fetchFromAPI(`serach?part=snippet&releatedToVideoId=${id}&type=video`)
+    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`)
       .then((data) => setVideos(data.items))
       .catch((err) => console.log(err));
   }, [id]);
-  console.log(videos);
 
   if (!videoDetail?.snippet) return "loading...";
 
@@ -72,15 +71,15 @@ const VideoDetail = () => {
             </Stack>
           </Box>
         </Box>
+        <Box
+          px={2}
+          py={{ md: 1, xs: 5 }}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Videos video={videos} direction="column" />
+        </Box>
       </Stack>
-      <Box
-        px={2}
-        py={{ md: 1, xs: 5 }}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Videos video={videos} />
-      </Box>
     </Box>
   );
 };
